@@ -7,102 +7,84 @@
     <meta name="author" content="David W. Zhang">
     <meta name="description" content="Research Scientist at FAIR, Meta">
     
-    <!-- Fonts: JetBrains Mono for tech/gaming vibe + clean serif -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg: #0f0f0f;
+            --bg: #0a0a0a;
             --text: #e8e8e8;
             --text-muted: #888;
-            --accent: #7dd3fc; /* soft cyan - anime/gaming inspired */
-            --accent-secondary: #f472b6; /* soft pink accent */
-            --border: #333;
-            --card-bg: #1a1a1a;
+            --accent: #7dd3fc;
+            --accent-secondary: #f472b6;
+            --border: #2a2a2a;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        ::selection {
-            background: var(--accent);
-            color: var(--bg);
-        }
+        ::selection { background: var(--accent); color: var(--bg); }
 
         body {
-            font-family: 'Noto Sans JP', -apple-system, sans-serif;
+            font-family: 'Noto Sans JP', sans-serif;
             font-weight: 300;
             font-size: 15px;
             line-height: 1.8;
             color: var(--text);
             background: var(--bg);
-            min-height: 100vh;
         }
 
         .container {
-            max-width: 720px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 60px 24px 100px;
+            padding: 60px 40px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 60px;
         }
 
-        /* Header */
-        .hero {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            margin-bottom: 48px;
-            padding-bottom: 32px;
-            border-bottom: 1px solid var(--border);
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 60px;
+            height: fit-content;
         }
 
         .avatar {
-            width: 100px;
-            height: 100px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             object-fit: cover;
-            flex-shrink: 0;
             border: 2px solid var(--border);
-            transition: border-color 0.3s ease;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
         }
 
-        .avatar:hover {
-            border-color: var(--accent);
-        }
+        .avatar:hover { border-color: var(--accent); }
 
-        .intro h1 {
+        .sidebar h1 {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 500;
-            letter-spacing: -0.02em;
-            margin-bottom: 6px;
-            color: var(--text);
+            margin-bottom: 8px;
         }
 
         .tagline {
             font-size: 14px;
             color: var(--text-muted);
-            margin-bottom: 12px;
+            margin-bottom: 20px;
         }
 
         .tagline a {
             color: var(--accent);
             text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .tagline a:hover {
-            color: var(--accent-secondary);
         }
 
         .links {
             display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 30px;
         }
 
         .links a {
@@ -110,20 +92,13 @@
             font-size: 12px;
             color: var(--text-muted);
             text-decoration: none;
-            padding: 4px 0;
-            border-bottom: 1px dashed var(--border);
-            transition: all 0.2s;
+            transition: color 0.2s;
         }
 
-        .links a:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-        }
+        .links a:hover { color: var(--accent); }
 
-        /* Sections */
-        section {
-            margin-bottom: 48px;
-        }
+        /* Main content */
+        .main section { margin-bottom: 48px; }
 
         .section-title {
             font-family: 'JetBrains Mono', monospace;
@@ -143,22 +118,9 @@
             color: var(--accent-secondary);
         }
 
-        /* Bio */
-        .bio p {
-            font-size: 14px;
-            color: var(--text);
-        }
+        .bio p { font-size: 14px; }
+        .bio a { color: var(--accent); text-decoration: none; }
 
-        .bio a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        .bio a:hover {
-            text-decoration: underline;
-        }
-
-        /* Experience */
         .exp-item {
             display: flex;
             gap: 16px;
@@ -174,34 +136,19 @@
             color: var(--text-muted);
         }
 
-        .exp-content {
-            color: var(--text);
-        }
+        .exp-org { color: var(--text-muted); font-size: 13px; }
 
-        .exp-org {
-            color: var(--text-muted);
-            font-size: 13px;
-        }
-
-        /* Publications */
         .pub {
             margin-bottom: 24px;
             padding-bottom: 24px;
             border-bottom: 1px solid var(--border);
         }
 
-        .pub:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-            margin-bottom: 0;
-        }
+        .pub:last-child { border-bottom: none; }
 
         .pub-title {
             font-size: 15px;
-            font-weight: 400;
-            line-height: 1.5;
             margin-bottom: 6px;
-            color: var(--text);
         }
 
         .pub-title a {
@@ -210,9 +157,7 @@
             transition: color 0.2s;
         }
 
-        .pub-title a:hover {
-            color: var(--accent);
-        }
+        .pub-title a:hover { color: var(--accent); }
 
         .pub-authors {
             font-size: 13px;
@@ -222,7 +167,6 @@
 
         .pub-authors .me {
             color: var(--accent);
-            font-weight: 400;
         }
 
         .pub-venue {
@@ -232,11 +176,7 @@
             margin-bottom: 8px;
         }
 
-        .pub-links {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+        .pub-links { display: flex; gap: 10px; }
 
         .pub-links a {
             font-family: 'JetBrains Mono', monospace;
@@ -255,218 +195,122 @@
             color: var(--bg);
         }
 
-        /* More about me */
-        .about-extra {
-            font-size: 13px;
-            color: var(--text-muted);
-            padding: 16px;
-            background: var(--card-bg);
-            border-radius: 6px;
-            border-left: 3px solid var(--accent-secondary);
-        }
-
-        .about-extra span {
-            margin-right: 4px;
-        }
-
-        /* Footer */
         footer {
-            text-align: center;
-            padding-top: 32px;
-            border-top: 1px solid var(--border);
             font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
             color: var(--text-muted);
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
         }
 
-        /* Responsive */
-        @media (max-width: 600px) {
+        /* Mobile */
+        @media (max-width: 768px) {
             .container {
-                padding: 40px 20px 60px;
+                grid-template-columns: 1fr;
+                padding: 40px 20px;
+                gap: 40px;
             }
 
-            .hero {
-                flex-direction: column;
+            .sidebar {
+                position: static;
                 text-align: center;
-                gap: 20px;
-            }
-
-            .avatar {
-                width: 90px;
-                height: 90px;
-            }
-
-            .intro h1 {
-                font-size: 24px;
             }
 
             .links {
+                flex-direction: row;
                 justify-content: center;
+                flex-wrap: wrap;
+                gap: 16px;
             }
 
-            .exp-item {
-                flex-direction: column;
-                gap: 4px;
-            }
+            .about-extra { text-align: left; }
 
-            .exp-year {
-                width: auto;
-            }
-
-            .section-title {
-                font-size: 12px;
-            }
+            .exp-item { flex-direction: column; gap: 4px; }
+            .exp-year { width: auto; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Hero -->
-        <header class="hero">
+        <aside class="sidebar">
             <img src="avatar.png" alt="David W. Zhang" class="avatar">
-            <div class="intro">
-                <h1>David W. Zhang</h1>
-                <p class="tagline">
-                    Research Scientist @ <a href="https://ai.meta.com/research/">FAIR, Meta</a>
-                </p>
-                <div class="links">
-                    <a href="mailto:weidavid.zhang@gmail.com">Email</a>
-                    <a href="https://scholar.google.com/citations?user=MG3oLzUAAAAJ">Scholar</a>
-                    <a href="https://github.com/davzha">GitHub</a>
-                    <a href="https://www.linkedin.com/in/david-w-zhang/">LinkedIn</a>
-                </div>
-            </div>
-        </header>
-
-        <!-- Bio -->
-        <section class="bio">
-            <h2 class="section-title">About</h2>
-            <p>
-                I'm a research scientist at FAIR, Meta. Previously at Qualcomm AI Research. I did my PhD at the University of Amsterdam (ELLIS program) with <a href="https://www.ceessnoek.info/">Cees Snoek</a> and <a href="https://scholar.google.com/citations?user=BYpkrVcAAAAJ">Gertjan Burghouts</a>. My research focuses on structured prediction, generative models, and reinforcement learning for LLMs.
-            </p>
-        </section>
-
-        <!-- Experience -->
-        <section>
-            <h2 class="section-title">Experience</h2>
-            <div class="exp-item">
-                <span class="exp-year">2024 —</span>
-                <div class="exp-content">
-                    Research Scientist
-                    <div class="exp-org">FAIR, Meta</div>
-                </div>
-            </div>
-            <div class="exp-item">
-                <span class="exp-year">2023 — 2024</span>
-                <div class="exp-content">
-                    ML Researcher
-                    <div class="exp-org">Qualcomm AI Research</div>
-                </div>
-            </div>
-            <div class="exp-item">
-                <span class="exp-year">2022</span>
-                <div class="exp-content">
-                    Research Intern
-                    <div class="exp-org">Qualcomm AI Research</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Publications -->
-        <section>
-            <h2 class="section-title">Publications</h2>
-
-            <div class="pub">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2503.05453">Soft Policy Optimization: Online Off-Policy RL for Sequence Models</a></div>
-                <div class="pub-authors">Taco Cohen*, <span class="me">David W. Zhang*</span>, Kunhao Zheng, Yunhao Tang, Rémi Munos, Gabriel Synnaeve</div>
-                <div class="pub-venue">arXiv 2025</div>
-                <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2503.05453">PDF</a>
-                </div>
+            <h1>David W. Zhang</h1>
+            <p class="tagline">Research Scientist @ <a href="https://ai.meta.com/research/">FAIR, Meta</a></p>
+            <div class="links">
+                <a href="mailto:weidavid.zhang@gmail.com">→ Email</a>
+                <a href="https://scholar.google.com/citations?user=MG3oLzUAAAAJ">→ Scholar</a>
+                <a href="https://github.com/davzha">→ GitHub</a>
+                <a href="https://www.linkedin.com/in/david-w-zhang/">→ LinkedIn</a>
             </div>
 
-            <div class="pub">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2402.04858">CodeIt: Self-Improving Language Models with Prioritized Hindsight Replay</a></div>
-                <div class="pub-authors">Natasha Butt, Blazej Manczak, Auke J. Wiggers, Corrado Rainone, <span class="me">David W. Zhang</span>, Michaël Defferrard, Taco Cohen</div>
-                <div class="pub-venue">ICML 2024</div>
-                <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2402.04858">PDF</a>
+        </aside>
+
+        <main class="main">
+            <section class="bio">
+                <h2 class="section-title">About</h2>
+                <p>Research scientist at FAIR, Meta. Previously at Qualcomm AI Research. PhD from University of Amsterdam (ELLIS program) with <a href="https://www.ceessnoek.info/">Cees Snoek</a> and <a href="https://scholar.google.com/citations?user=BYpkrVcAAAAJ">Gertjan Burghouts</a>. Research: structured prediction, generative models, RL for LLMs.</p>
+            </section>
+
+            <section>
+                <h2 class="section-title">Experience</h2>
+                <div class="exp-item">
+                    <span class="exp-year">2024 —</span>
+                    <div>Research Scientist<div class="exp-org">FAIR, Meta</div></div>
                 </div>
-            </div>
-
-            <div class="pub">
-                <div class="pub-title"><a href="https://openreview.net/forum?id=oLRt1guzT5">Graph Neural Networks for Learning Equivariant Representations of Neural Networks</a></div>
-                <div class="pub-authors">Miltiadis Kofinas, Boris Knyazev, Yan Zhang, Yunlu Chen, Gertjan J. Burghouts, Efstratios Gavves, Cees G. M. Snoek, <span class="me">David W. Zhang</span></div>
-                <div class="pub-venue">ICLR 2024</div>
-                <div class="pub-links">
-                    <a href="https://openreview.net/forum?id=oLRt1guzT5">PDF</a>
+                <div class="exp-item">
+                    <span class="exp-year">2023 — 2024</span>
+                    <div>ML Researcher<div class="exp-org">Qualcomm AI Research</div></div>
                 </div>
-            </div>
+            </section>
 
-            <div class="pub">
-                <div class="pub-title"><a href="https://openreview.net/pdf?id=sCkLwG9wjy">Neural Networks Are Graphs! GNNs for Equivariant Processing of Neural Networks</a></div>
-                <div class="pub-authors"><span class="me">David W. Zhang</span>, Miltiadis Kofinas, Yan Zhang, Yunlu Chen, Gertjan J. Burghouts, Cees G. M. Snoek</div>
-                <div class="pub-venue">TAG-ML @ ICML 2023</div>
-                <div class="pub-links">
-                    <a href="https://openreview.net/pdf?id=sCkLwG9wjy">PDF</a>
+            <section>
+                <h2 class="section-title">Publications</h2>
+                <div class="pub">
+                    <div class="pub-title"><a href="https://arxiv.org/abs/2503.05453">Soft Policy Optimization: Online Off-Policy RL for Sequence Models</a></div>
+                    <div class="pub-authors">Taco Cohen*, <span class="me">David W. Zhang*</span>, Kunhao Zheng, Yunhao Tang, Rémi Munos, Gabriel Synnaeve</div>
+                    <div class="pub-venue">arXiv 2025</div>
+                    <div class="pub-links"><a href="https://arxiv.org/abs/2503.05453">PDF</a></div>
                 </div>
-            </div>
-
-            <div class="pub">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2301.13197">Unlocking Slot Attention by Changing Optimal Transport Costs</a></div>
-                <div class="pub-authors">Yan Zhang, <span class="me">David W. Zhang</span>, Simon Lacoste-Julien, Gertjan J. Burghouts, Cees G. M. Snoek</div>
-                <div class="pub-venue">ICML 2023</div>
-                <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2301.13197">PDF</a>
-                    <a href="https://github.com/davzha/MESH">Code</a>
+                <div class="pub">
+                    <div class="pub-title"><a href="https://arxiv.org/abs/2402.04858">CodeIt: Self-Improving Language Models with Prioritized Hindsight Replay</a></div>
+                    <div class="pub-authors">Natasha Butt, Blazej Manczak, Auke J. Wiggers, Corrado Rainone, <span class="me">David W. Zhang</span>, Michaël Defferrard, Taco Cohen</div>
+                    <div class="pub-venue">ICML 2024</div>
+                    <div class="pub-links"><a href="https://arxiv.org/abs/2402.04858">PDF</a></div>
                 </div>
-            </div>
-
-            <div class="pub">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2210.06462">Self-Guided Diffusion Models</a></div>
-                <div class="pub-authors">Vincent Tao Hu, <span class="me">David W. Zhang</span>, Yuki M. Asano, Gertjan J. Burghouts, Cees G. M. Snoek</div>
-                <div class="pub-venue">CVPR 2023</div>
-                <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2210.06462">PDF</a>
+                <div class="pub">
+                    <div class="pub-title"><a href="https://openreview.net/forum?id=oLRt1guzT5">Graph Neural Networks for Learning Equivariant Representations of Neural Networks</a></div>
+                    <div class="pub-authors">Miltiadis Kofinas, Boris Knyazev, Yan Zhang, Yunlu Chen, Gertjan J. Burghouts, Efstratios Gavves, Cees G. M. Snoek, <span class="me">David W. Zhang</span></div>
+                    <div class="pub-venue">ICLR 2024</div>
+                    <div class="pub-links"><a href="https://openreview.net/forum?id=oLRt1guzT5">PDF</a></div>
                 </div>
-            </div>
-
-            <div class="pub">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2302.05446">Robust Scheduling with GFlowNets</a></div>
-                <div class="pub-authors"><span class="me">David W. Zhang</span>, Corrado Rainone, Markus Peschl, Roberto Bondesan</div>
-                <div class="pub-venue">ICLR 2023</div>
-                <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2302.05446">PDF</a>
+                <div class="pub">
+                    <div class="pub-title"><a href="https://arxiv.org/abs/2301.13197">Unlocking Slot Attention by Changing Optimal Transport Costs</a></div>
+                    <div class="pub-authors">Yan Zhang, <span class="me">David W. Zhang</span>, Simon Lacoste-Julien, Gertjan J. Burghouts, Cees G. M. Snoek</div>
+                    <div class="pub-venue">ICML 2023</div>
+                    <div class="pub-links"><a href="https://arxiv.org/abs/2301.13197">PDF</a> <a href="https://github.com/davzha/MESH">Code</a></div>
                 </div>
-            </div>
-
-            <div class="pub">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2111.12193">Multiset-Equivariant Set Prediction with Approximate Implicit Differentiation</a></div>
-                <div class="pub-authors">Yan Zhang, <span class="me">David W. Zhang</span>, Simon Lacoste-Julien, Gertjan J. Burghouts, Cees G. M. Snoek</div>
-                <div class="pub-venue">ICLR 2022</div>
-                <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2111.12193">PDF</a>
-                    <a href="https://github.com/davzha/multiset-equivariance">Code</a>
+                <div class="pub">
+                    <div class="pub-title"><a href="https://arxiv.org/abs/2210.06462">Self-Guided Diffusion Models</a></div>
+                    <div class="pub-authors">Vincent Tao Hu, <span class="me">David W. Zhang</span>, Yuki M. Asano, Gertjan J. Burghouts, Cees G. M. Snoek</div>
+                    <div class="pub-venue">CVPR 2023</div>
+                    <div class="pub-links"><a href="https://arxiv.org/abs/2210.06462">PDF</a></div>
                 </div>
-            </div>
-
-            <div class="pub">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2010.04109">Set Prediction without Imposing Structure as Conditional Density Estimation</a></div>
-                <div class="pub-authors"><span class="me">David W. Zhang</span>, Gertjan J. Burghouts, Cees G. M. Snoek</div>
-                <div class="pub-venue">ICLR 2021</div>
-                <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2010.04109">PDF</a>
-                    <a href="https://github.com/davzha/DESP">Code</a>
+                <div class="pub">
+                    <div class="pub-title"><a href="https://arxiv.org/abs/2302.05446">Robust Scheduling with GFlowNets</a></div>
+                    <div class="pub-authors"><span class="me">David W. Zhang</span>, Corrado Rainone, Markus Peschl, Roberto Bondesan</div>
+                    <div class="pub-venue">ICLR 2023</div>
+                    <div class="pub-links"><a href="https://arxiv.org/abs/2302.05446">PDF</a></div>
                 </div>
-            </div>
-        </section>
+                <div class="pub">
+                    <div class="pub-title"><a href="https://arxiv.org/abs/2010.04109">Set Prediction without Imposing Structure as Conditional Density Estimation</a></div>
+                    <div class="pub-authors"><span class="me">David W. Zhang</span>, Gertjan J. Burghouts, Cees G. M. Snoek</div>
+                    <div class="pub-venue">ICLR 2021</div>
+                    <div class="pub-links"><a href="https://arxiv.org/abs/2010.04109">PDF</a> <a href="https://github.com/davzha/DESP">Code</a></div>
+                </div>
+            </section>
 
-        
-
-        <!-- Footer -->
-        <footer>
-            <p>© 2025 David W. Zhang</p>
-        </footer>
+            <footer>© 2025 David W. Zhang</footer>
+        </main>
     </div>
 </body>
 </html>
