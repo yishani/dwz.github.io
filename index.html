@@ -7,19 +7,20 @@
     <meta name="author" content="David W. Zhang">
     <meta name="description" content="Research Scientist at FAIR, Meta">
     
-    <!-- Fonts -->
+    <!-- Fonts: JetBrains Mono for tech/gaming vibe + clean serif -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg: #FDFBF7;
-            --text: #1a1a1a;
-            --text-muted: #666;
-            --accent: #2563eb;
-            --accent-hover: #1d4ed8;
-            --border: #e5e5e5;
+            --bg: #0f0f0f;
+            --text: #e8e8e8;
+            --text-muted: #888;
+            --accent: #7dd3fc; /* soft cyan - anime/gaming inspired */
+            --accent-secondary: #f472b6; /* soft pink accent */
+            --border: #333;
+            --card-bg: #1a1a1a;
         }
 
         * {
@@ -28,67 +29,89 @@
             box-sizing: border-box;
         }
 
+        ::selection {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
         body {
-            font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+            font-family: 'Noto Sans JP', -apple-system, sans-serif;
             font-weight: 300;
-            font-size: 16px;
-            line-height: 1.7;
+            font-size: 15px;
+            line-height: 1.8;
             color: var(--text);
             background: var(--bg);
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 680px;
+            max-width: 720px;
             margin: 0 auto;
-            padding: 80px 32px 120px;
+            padding: 60px 24px 100px;
         }
 
         /* Header */
         .hero {
             display: flex;
-            align-items: flex-start;
-            gap: 40px;
-            margin-bottom: 64px;
+            align-items: center;
+            gap: 32px;
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
         }
 
         .avatar {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             object-fit: cover;
             flex-shrink: 0;
+            border: 2px solid var(--border);
+            transition: border-color 0.3s ease;
+        }
+
+        .avatar:hover {
+            border-color: var(--accent);
         }
 
         .intro h1 {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 38px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 28px;
             font-weight: 500;
             letter-spacing: -0.02em;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            color: var(--text);
         }
 
         .tagline {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--text-muted);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .tagline a {
             color: var(--accent);
             text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .tagline a:hover {
+            color: var(--accent-secondary);
         }
 
         .links {
             display: flex;
-            gap: 20px;
+            gap: 16px;
             flex-wrap: wrap;
         }
 
         .links a {
-            font-size: 14px;
-            color: var(--text);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
             text-decoration: none;
-            border-bottom: 1px solid var(--border);
+            padding: 4px 0;
+            border-bottom: 1px dashed var(--border);
             transition: all 0.2s;
         }
 
@@ -99,24 +122,31 @@
 
         /* Sections */
         section {
-            margin-bottom: 56px;
+            margin-bottom: 48px;
         }
 
         .section-title {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 12px;
-            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.1em;
             color: var(--accent);
             margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title::before {
+            content: '>';
+            color: var(--accent-secondary);
         }
 
         /* Bio */
         .bio p {
-            font-size: 15px;
+            font-size: 14px;
+            color: var(--text);
         }
 
         .bio a {
@@ -124,30 +154,39 @@
             text-decoration: none;
         }
 
-        /* Timeline (Education & Experience) */
-        .timeline-item {
+        .bio a:hover {
+            text-decoration: underline;
+        }
+
+        /* Experience */
+        .exp-item {
             display: flex;
             gap: 16px;
             margin-bottom: 12px;
-            font-size: 15px;
+            font-size: 14px;
         }
 
-        .timeline-year {
+        .exp-year {
+            font-family: 'JetBrains Mono', monospace;
             width: 100px;
             flex-shrink: 0;
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-muted);
         }
 
-        .timeline-org {
+        .exp-content {
+            color: var(--text);
+        }
+
+        .exp-org {
             color: var(--text-muted);
-            font-size: 14px;
+            font-size: 13px;
         }
 
         /* Publications */
         .pub {
-            margin-bottom: 28px;
-            padding-bottom: 28px;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
             border-bottom: 1px solid var(--border);
         }
 
@@ -158,42 +197,53 @@
         }
 
         .pub-title {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 1.4;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.5;
             margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .pub-title a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .pub-title a:hover {
+            color: var(--accent);
         }
 
         .pub-authors {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-muted);
             margin-bottom: 4px;
         }
 
         .pub-authors .me {
-            color: var(--text);
-            font-weight: 500;
+            color: var(--accent);
+            font-weight: 400;
         }
 
         .pub-venue {
-            font-size: 14px;
-            font-style: italic;
-            color: var(--accent);
-            margin-bottom: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--accent-secondary);
+            margin-bottom: 8px;
         }
 
         .pub-links {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
         }
 
         .pub-links a {
-            font-size: 13px;
-            color: var(--text);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
             text-decoration: none;
-            padding: 3px 10px;
+            padding: 3px 8px;
             border: 1px solid var(--border);
             border-radius: 3px;
             transition: all 0.2s;
@@ -202,7 +252,21 @@
         .pub-links a:hover {
             background: var(--accent);
             border-color: var(--accent);
-            color: white;
+            color: var(--bg);
+        }
+
+        /* More about me */
+        .about-extra {
+            font-size: 13px;
+            color: var(--text-muted);
+            padding: 16px;
+            background: var(--card-bg);
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-secondary);
+        }
+
+        .about-extra span {
+            margin-right: 4px;
         }
 
         /* Footer */
@@ -210,17 +274,48 @@
             text-align: center;
             padding-top: 32px;
             border-top: 1px solid var(--border);
-            font-size: 13px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
             color: var(--text-muted);
         }
 
         /* Responsive */
         @media (max-width: 600px) {
-            .container { padding: 48px 24px 80px; }
-            .hero { flex-direction: column; align-items: center; text-align: center; gap: 24px; }
-            .links { justify-content: center; }
-            .timeline-item { flex-direction: column; gap: 2px; }
-            .timeline-year { width: auto; }
+            .container {
+                padding: 40px 20px 60px;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .avatar {
+                width: 90px;
+                height: 90px;
+            }
+
+            .intro h1 {
+                font-size: 24px;
+            }
+
+            .links {
+                justify-content: center;
+            }
+
+            .exp-item {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .exp-year {
+                width: auto;
+            }
+
+            .section-title {
+                font-size: 12px;
+            }
         }
     </style>
 </head>
@@ -232,14 +327,13 @@
             <div class="intro">
                 <h1>David W. Zhang</h1>
                 <p class="tagline">
-                    Research Scientist at <a href="https://ai.meta.com/research/">FAIR, Meta</a>
+                    Research Scientist @ <a href="https://ai.meta.com/research/">FAIR, Meta</a>
                 </p>
                 <div class="links">
-                    <a href="mailto:david@meta.com">Email</a>
+                    <a href="mailto:weidavid.zhang@gmail.com">Email</a>
                     <a href="https://scholar.google.com/citations?user=MG3oLzUAAAAJ">Scholar</a>
                     <a href="https://github.com/davzha">GitHub</a>
                     <a href="https://www.linkedin.com/in/david-w-zhang/">LinkedIn</a>
-                    <a href="resume.pdf">CV</a>
                 </div>
             </div>
         </header>
@@ -248,62 +342,43 @@
         <section class="bio">
             <h2 class="section-title">About</h2>
             <p>
-                I'm a research scientist at FAIR, Meta. Previously, I was at Qualcomm AI Research in Amsterdam. I completed my PhD at the University of Amsterdam, supervised by <a href="https://www.ceessnoek.info/">Cees Snoek</a> and <a href="https://scholar.google.com/citations?user=BYpkrVcAAAAJ">Gertjan Burghouts</a>, as part of the ELLIS PhD program with TNO. My research focuses on structured prediction, generative models, and reinforcement learning for sequence models.
+                I'm a research scientist at FAIR, Meta. Previously at Qualcomm AI Research. I did my PhD at the University of Amsterdam (ELLIS program) with <a href="https://www.ceessnoek.info/">Cees Snoek</a> and <a href="https://scholar.google.com/citations?user=BYpkrVcAAAAJ">Gertjan Burghouts</a>. My research focuses on structured prediction, generative models, and reinforcement learning for LLMs.
             </p>
         </section>
 
         <!-- Experience -->
         <section>
             <h2 class="section-title">Experience</h2>
-            <div class="timeline-item">
-                <span class="timeline-year">2024 —</span>
-                <div>
-                    <div>Research Scientist</div>
-                    <div class="timeline-org">FAIR, Meta</div>
+            <div class="exp-item">
+                <span class="exp-year">2024 —</span>
+                <div class="exp-content">
+                    Research Scientist
+                    <div class="exp-org">FAIR, Meta</div>
                 </div>
             </div>
-            <div class="timeline-item">
-                <span class="timeline-year">2023 — 2024</span>
-                <div>
-                    <div>ML Researcher</div>
-                    <div class="timeline-org">Qualcomm AI Research</div>
+            <div class="exp-item">
+                <span class="exp-year">2023 — 2024</span>
+                <div class="exp-content">
+                    ML Researcher
+                    <div class="exp-org">Qualcomm AI Research</div>
                 </div>
             </div>
-        </section>
-
-        <!-- Education -->
-        <section>
-            <h2 class="section-title">Education</h2>
-            <div class="timeline-item">
-                <span class="timeline-year">2019 — 2023</span>
-                <div>
-                    <div>PhD in Machine Learning</div>
-                    <div class="timeline-org">University of Amsterdam</div>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <span class="timeline-year">2015 — 2017</span>
-                <div>
-                    <div>MSc in Computer Science</div>
-                    <div class="timeline-org">Technical University of Munich</div>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <span class="timeline-year">2012 — 2015</span>
-                <div>
-                    <div>BSc in Computer Science</div>
-                    <div class="timeline-org">Technical University of Munich</div>
+            <div class="exp-item">
+                <span class="exp-year">2022</span>
+                <div class="exp-content">
+                    Research Intern
+                    <div class="exp-org">Qualcomm AI Research</div>
                 </div>
             </div>
         </section>
 
         <!-- Publications -->
         <section>
-            <h2 class="section-title">Selected Publications</h2>
+            <h2 class="section-title">Publications</h2>
 
             <div class="pub">
-                <div class="pub-title">Soft Policy Optimization: Online Off-Policy RL for Sequence Models</div>
-                <div class="pub-authors">Taco Cohen, <span class="me">David W. Zhang</span>, Kunhao Zheng, Yunhao Tang, Rémi Munos, Gabriel Synnaeve</div>
+                <div class="pub-title"><a href="https://arxiv.org/abs/2503.05453">Soft Policy Optimization: Online Off-Policy RL for Sequence Models</a></div>
+                <div class="pub-authors">Taco Cohen*, <span class="me">David W. Zhang*</span>, Kunhao Zheng, Yunhao Tang, Rémi Munos, Gabriel Synnaeve</div>
                 <div class="pub-venue">arXiv 2025</div>
                 <div class="pub-links">
                     <a href="https://arxiv.org/abs/2503.05453">PDF</a>
@@ -311,7 +386,7 @@
             </div>
 
             <div class="pub">
-                <div class="pub-title">CodeIt: Self-Improving Language Models with Prioritized Hindsight Replay</div>
+                <div class="pub-title"><a href="https://arxiv.org/abs/2402.04858">CodeIt: Self-Improving Language Models with Prioritized Hindsight Replay</a></div>
                 <div class="pub-authors">Natasha Butt, Blazej Manczak, Auke J. Wiggers, Corrado Rainone, <span class="me">David W. Zhang</span>, Michaël Defferrard, Taco Cohen</div>
                 <div class="pub-venue">ICML 2024</div>
                 <div class="pub-links">
@@ -320,7 +395,7 @@
             </div>
 
             <div class="pub">
-                <div class="pub-title">Graph Neural Networks for Learning Equivariant Representations of Neural Networks</div>
+                <div class="pub-title"><a href="https://openreview.net/forum?id=oLRt1guzT5">Graph Neural Networks for Learning Equivariant Representations of Neural Networks</a></div>
                 <div class="pub-authors">Miltiadis Kofinas, Boris Knyazev, Yan Zhang, Yunlu Chen, Gertjan J. Burghouts, Efstratios Gavves, Cees G. M. Snoek, <span class="me">David W. Zhang</span></div>
                 <div class="pub-venue">ICLR 2024</div>
                 <div class="pub-links">
@@ -329,7 +404,16 @@
             </div>
 
             <div class="pub">
-                <div class="pub-title">Unlocking Slot Attention by Changing Optimal Transport Costs</div>
+                <div class="pub-title"><a href="https://openreview.net/pdf?id=sCkLwG9wjy">Neural Networks Are Graphs! GNNs for Equivariant Processing of Neural Networks</a></div>
+                <div class="pub-authors"><span class="me">David W. Zhang</span>, Miltiadis Kofinas, Yan Zhang, Yunlu Chen, Gertjan J. Burghouts, Cees G. M. Snoek</div>
+                <div class="pub-venue">TAG-ML @ ICML 2023</div>
+                <div class="pub-links">
+                    <a href="https://openreview.net/pdf?id=sCkLwG9wjy">PDF</a>
+                </div>
+            </div>
+
+            <div class="pub">
+                <div class="pub-title"><a href="https://arxiv.org/abs/2301.13197">Unlocking Slot Attention by Changing Optimal Transport Costs</a></div>
                 <div class="pub-authors">Yan Zhang, <span class="me">David W. Zhang</span>, Simon Lacoste-Julien, Gertjan J. Burghouts, Cees G. M. Snoek</div>
                 <div class="pub-venue">ICML 2023</div>
                 <div class="pub-links">
@@ -339,7 +423,7 @@
             </div>
 
             <div class="pub">
-                <div class="pub-title">Self-Guided Diffusion Models</div>
+                <div class="pub-title"><a href="https://arxiv.org/abs/2210.06462">Self-Guided Diffusion Models</a></div>
                 <div class="pub-authors">Vincent Tao Hu, <span class="me">David W. Zhang</span>, Yuki M. Asano, Gertjan J. Burghouts, Cees G. M. Snoek</div>
                 <div class="pub-venue">CVPR 2023</div>
                 <div class="pub-links">
@@ -348,7 +432,7 @@
             </div>
 
             <div class="pub">
-                <div class="pub-title">Robust Scheduling with GFlowNets</div>
+                <div class="pub-title"><a href="https://arxiv.org/abs/2302.05446">Robust Scheduling with GFlowNets</a></div>
                 <div class="pub-authors"><span class="me">David W. Zhang</span>, Corrado Rainone, Markus Peschl, Roberto Bondesan</div>
                 <div class="pub-venue">ICLR 2023</div>
                 <div class="pub-links">
@@ -357,7 +441,17 @@
             </div>
 
             <div class="pub">
-                <div class="pub-title">Set Prediction without Imposing Structure as Conditional Density Estimation</div>
+                <div class="pub-title"><a href="https://arxiv.org/abs/2111.12193">Multiset-Equivariant Set Prediction with Approximate Implicit Differentiation</a></div>
+                <div class="pub-authors">Yan Zhang, <span class="me">David W. Zhang</span>, Simon Lacoste-Julien, Gertjan J. Burghouts, Cees G. M. Snoek</div>
+                <div class="pub-venue">ICLR 2022</div>
+                <div class="pub-links">
+                    <a href="https://arxiv.org/abs/2111.12193">PDF</a>
+                    <a href="https://github.com/davzha/multiset-equivariance">Code</a>
+                </div>
+            </div>
+
+            <div class="pub">
+                <div class="pub-title"><a href="https://arxiv.org/abs/2010.04109">Set Prediction without Imposing Structure as Conditional Density Estimation</a></div>
                 <div class="pub-authors"><span class="me">David W. Zhang</span>, Gertjan J. Burghouts, Cees G. M. Snoek</div>
                 <div class="pub-venue">ICLR 2021</div>
                 <div class="pub-links">
@@ -366,6 +460,8 @@
                 </div>
             </div>
         </section>
+
+        
 
         <!-- Footer -->
         <footer>
