@@ -1,1 +1,1 @@
-https://dwz.github.io
+https://yishani.github.io/dwz.github.io
