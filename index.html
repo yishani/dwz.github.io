@@ -7,23 +7,27 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --bg: #000;
             --text: #fff;
-            --text-muted: #777;
-            --border: #333;
+            --text-muted: #888;
+            --accent: #00d4ff;
+            --accent-warm: #ff6b35;
+            --border: #222;
+            --card-bg: #0a0a0a;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        ::selection { background: #fff; color: #000; }
+        ::selection { background: var(--accent); color: #000; }
 
         body {
-            font-family: 'DM Mono', monospace;
-            font-size: 14px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            font-size: 15px;
             line-height: 1.7;
             color: var(--text);
             background: var(--bg);
@@ -53,10 +57,16 @@
             object-fit: cover;
             margin-bottom: 24px;
             filter: grayscale(100%) contrast(1.1);
+            transition: filter 0.3s ease;
+        }
+
+        .avatar:hover {
+            filter: grayscale(0%) contrast(1);
         }
 
         .sidebar h1 {
-            font-size: 16px;
+            font-family: 'DM Mono', monospace;
+            font-size: 18px;
             font-weight: 500;
             margin-bottom: 4px;
             text-transform: uppercase;
@@ -64,132 +74,226 @@
         }
 
         .tagline {
-            font-size: 12px;
+            font-size: 13px;
             color: var(--text-muted);
             margin-bottom: 32px;
         }
 
         .tagline a {
-            color: var(--text-muted);
+            color: var(--accent);
             text-decoration: none;
+            transition: color 0.2s;
         }
 
-        .tagline a:hover { color: var(--text); }
+        .tagline a:hover { color: var(--accent-warm); }
 
         .links {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
         }
 
         .links a {
+            font-family: 'DM Mono', monospace;
             font-size: 12px;
             color: var(--text-muted);
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
         }
 
-        .links a:hover { color: var(--text); }
+        .links a::before {
+            content: '';
+            width: 8px;
+            height: 1px;
+            background: var(--border);
+            transition: all 0.2s;
+        }
+
+        .links a:hover { 
+            color: var(--accent); 
+        }
+
+        .links a:hover::before {
+            width: 16px;
+            background: var(--accent);
+        }
 
         /* Main */
         .main section { margin-bottom: 48px; }
 
         .section-title {
-            font-size: 10px;
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: var(--text-muted);
+            color: var(--accent);
             margin-bottom: 20px;
-            padding-bottom: 8px;
+            padding-bottom: 12px;
             border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .bio p { font-size: 13px; }
-        .bio a { 
-            color: var(--text);
-            text-decoration: none;
-            border-bottom: 1px solid var(--border);
+        .section-title::before {
+            content: '//';
+            color: var(--accent-warm);
         }
-        .bio a:hover { border-color: var(--text); }
+
+        .bio p { 
+            font-size: 14px; 
+            color: #ccc;
+        }
+        .bio a { 
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        .bio a:hover { border-color: var(--accent); }
 
         .exp-item {
             display: flex;
             gap: 32px;
-            margin-bottom: 6px;
-            font-size: 13px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .exp-item:last-child {
+            border-bottom: none;
         }
 
         .exp-year {
-            width: 90px;
+            font-family: 'DM Mono', monospace;
+            width: 100px;
             flex-shrink: 0;
             font-size: 12px;
-            color: var(--text-muted);
+            color: var(--accent-warm);
         }
 
         .pub {
             margin-bottom: 24px;
-            padding-bottom: 24px;
-            border-bottom: 1px solid var(--border);
+            padding: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            transition: all 0.2s;
         }
 
-        .pub:last-child { border-bottom: none; }
+        .pub:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
 
         .pub-title {
-            font-size: 13px;
+            font-family: 'DM Mono', monospace;
+            font-size: 14px;
             font-weight: 500;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
         .pub-title a {
             color: var(--text);
             text-decoration: none;
+            transition: color 0.2s;
         }
 
-        .pub-title a:hover { 
-            border-bottom: 1px solid var(--text);
-        }
+        .pub-title a:hover { color: var(--accent); }
 
         .pub-authors {
-            font-size: 12px;
+            font-size: 13px;
             color: var(--text-muted);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
-        .pub-authors .me { color: var(--text); }
+        .pub-authors .me { 
+            color: var(--accent); 
+            font-weight: 400;
+        }
 
         .pub-venue {
+            font-family: 'DM Mono', monospace;
             font-size: 11px;
-            color: var(--text-muted);
+            color: var(--accent-warm);
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            display: inline-block;
+            padding: 2px 8px;
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 107, 53, 0.3);
         }
 
-        .pub-links { display: flex; gap: 16px; }
+        .pub-links { display: flex; gap: 12px; }
 
         .pub-links a {
+            font-family: 'DM Mono', monospace;
             font-size: 11px;
             color: var(--text-muted);
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            padding: 4px 10px;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
         }
 
-        .pub-links a:hover { color: var(--text); }
+        .pub-links a:hover { 
+            color: var(--bg);
+            background: var(--accent);
+            border-color: var(--accent);
+        }
 
         footer {
+            font-family: 'DM Mono', monospace;
             font-size: 10px;
             color: var(--text-muted);
             padding-top: 24px;
             border-top: 1px solid var(--border);
             text-transform: uppercase;
             letter-spacing: 0.1em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-accent {
+            width: 40px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-warm));
         }
 
         .map-section { margin-bottom: 24px; }
         .map-container { display: flex; }
+
+        /* Decorative elements */
+        .corner-accent {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            pointer-events: none;
+        }
+
+        .corner-accent.top-left {
+            top: 20px;
+            left: 20px;
+            border-top: 2px solid var(--accent);
+            border-left: 2px solid var(--accent);
+        }
+
+        .corner-accent.bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-bottom: 2px solid var(--accent-warm);
+            border-right: 2px solid var(--accent-warm);
+        }
 
         @media (max-width: 768px) {
             .container {
@@ -205,12 +309,17 @@
                 padding-bottom: 40px;
             }
             .links { flex-direction: row; gap: 16px; flex-wrap: wrap; }
-            .exp-item { flex-direction: column; gap: 2px; }
+            .links a::before { display: none; }
+            .exp-item { flex-direction: column; gap: 4px; }
             .exp-year { width: auto; }
+            .corner-accent { display: none; }
         }
     </style>
 </head>
 <body>
+    <div class="corner-accent top-left"></div>
+    <div class="corner-accent bottom-right"></div>
+    
     <div class="container">
         <aside class="sidebar">
             <img src="avatar.png" alt="David W. Zhang" class="avatar">
@@ -292,6 +401,7 @@
                 </div>
             </section>
 
+           
 
             <section class="map-section">
                 <h2 class="section-title">Visitors</h2>
