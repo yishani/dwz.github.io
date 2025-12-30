@@ -4,42 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>David W. Zhang</title>
-    <meta name="author" content="David W. Zhang">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg: #0d0d0d;
-            --card: #161616;
-            --text: #f0f0f0;
+            --bg: #000;
+            --text: #fff;
             --text-muted: #777;
-            --accent: #a855f7;
-            --accent-2: #22d3ee;
-            --border: #2a2a2a;
+            --border: #333;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        ::selection { background: var(--accent); color: white; }
+        ::selection { background: #fff; color: #000; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-            font-size: 17px;
+            font-family: 'DM Mono', monospace;
+            font-size: 14px;
             line-height: 1.7;
             color: var(--text);
             background: var(--bg);
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 60px 40px;
             display: grid;
-            grid-template-columns: 300px 1fr;
+            grid-template-columns: 260px 1fr;
             gap: 60px;
         }
 
@@ -48,142 +43,103 @@
             position: sticky;
             top: 60px;
             height: fit-content;
-            background: var(--card);
-            padding: 32px;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-        }
-
-        .avatar-wrapper {
-            position: relative;
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 24px;
+            border-right: 1px solid var(--border);
+            padding-right: 40px;
         }
 
         .avatar {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
+            width: 80px;
+            height: 80px;
             object-fit: cover;
-            position: relative;
-            z-index: 1;
-        }
-
-        .avatar-wrapper::before {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent), var(--accent-2));
-            z-index: 0;
+            margin-bottom: 24px;
+            filter: grayscale(100%) contrast(1.1);
         }
 
         .sidebar h1 {
-            font-family: 'Space Mono', monospace;
-            font-size: 24px;
-            font-weight: 700;
-            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
             margin-bottom: 4px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .tagline {
-            font-size: 15px;
+            font-size: 12px;
             color: var(--text-muted);
-            text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: 32px;
         }
 
         .tagline a {
-            color: var(--accent-2);
+            color: var(--text-muted);
             text-decoration: none;
         }
+
+        .tagline a:hover { color: var(--text); }
 
         .links {
             display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-            margin-bottom: 24px;
+            flex-direction: column;
+            gap: 6px;
         }
 
         .links a {
-            font-family: 'Space Mono', monospace;
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-muted);
             text-decoration: none;
-            padding: 6px 12px;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .links a:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
+        .links a:hover { color: var(--text); }
 
         /* Main */
         .main section { margin-bottom: 48px; }
 
         .section-title {
-            font-family: 'Space Mono', monospace;
-            font-size: 13px;
-            font-weight: 700;
+            font-size: 10px;
+            font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--accent);
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, var(--accent), transparent);
+        .bio p { font-size: 13px; }
+        .bio a { 
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
         }
-
-        .bio p { font-size: 16px; color: var(--text); }
-        .bio a { color: var(--accent-2); text-decoration: none; }
+        .bio a:hover { border-color: var(--text); }
 
         .exp-item {
             display: flex;
-            gap: 20px;
-            margin-bottom: 12px;
-            font-size: 16px;
-            align-items: baseline;
+            gap: 32px;
+            margin-bottom: 6px;
+            font-size: 13px;
         }
 
         .exp-year {
-            font-family: 'Space Mono', monospace;
-            width: 120px;
+            width: 90px;
             flex-shrink: 0;
-            font-size: 14px;
-            color: var(--accent-2);
+            font-size: 12px;
+            color: var(--text-muted);
         }
 
         .pub {
-            margin-bottom: 20px;
-            padding: 20px;
-            background: var(--card);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: border-color 0.2s;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .pub:hover { border-color: var(--accent); }
+        .pub:last-child { border-bottom: none; }
 
         .pub-title {
-            font-size: 17px;
+            font-size: 13px;
             font-weight: 500;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .pub-title a {
@@ -191,72 +147,65 @@
             text-decoration: none;
         }
 
-        .pub-title a:hover { color: var(--accent); }
+        .pub-title a:hover { 
+            border-bottom: 1px solid var(--text);
+        }
 
         .pub-authors {
-            font-size: 14px;
+            font-size: 12px;
             color: var(--text-muted);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
-        .pub-authors .me {
-            color: var(--accent);
-            font-weight: 500;
-        }
+        .pub-authors .me { color: var(--text); }
 
         .pub-venue {
-            font-family: 'Space Mono', monospace;
-            font-size: 13px;
-            color: var(--accent-2);
-            margin-bottom: 12px;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
         }
 
-        .pub-links { display: flex; gap: 8px; }
+        .pub-links { display: flex; gap: 16px; }
 
         .pub-links a {
-            font-family: 'Space Mono', monospace;
-            font-size: 12px;
-            color: var(--text);
+            font-size: 11px;
+            color: var(--text-muted);
             text-decoration: none;
-            padding: 4px 10px;
-            background: var(--bg);
-            border-radius: 4px;
-            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .pub-links a:hover {
-            background: var(--accent);
-        }
+        .pub-links a:hover { color: var(--text); }
 
         footer {
-            font-family: 'Space Mono', monospace;
-            font-size: 13px;
+            font-size: 10px;
             color: var(--text-muted);
-            text-align: center;
             padding-top: 24px;
+            border-top: 1px solid var(--border);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
-        .map-section {
-            margin-bottom: 32px;
-        }
-
-        .map-container {
-            display: flex;
-            justify-content: center;
-        }
+        .map-section { margin-bottom: 24px; }
+        .map-container { display: flex; }
 
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
-                padding: 24px 16px;
-                gap: 32px;
+                padding: 40px 24px;
+                gap: 40px;
             }
-
             .sidebar {
                 position: static;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding-right: 0;
+                padding-bottom: 40px;
             }
-
-            .exp-item { flex-direction: column; gap: 4px; }
+            .links { flex-direction: row; gap: 16px; flex-wrap: wrap; }
+            .exp-item { flex-direction: column; gap: 2px; }
             .exp-year { width: auto; }
         }
     </style>
@@ -264,11 +213,9 @@
 <body>
     <div class="container">
         <aside class="sidebar">
-            <div class="avatar-wrapper">
-                <img src="avatar.png" alt="David W. Zhang" class="avatar">
-            </div>
+            <img src="avatar.png" alt="David W. Zhang" class="avatar">
             <h1>David W. Zhang</h1>
-            <p class="tagline">Research Scientist @ <a href="https://ai.meta.com/research/">FAIR, Meta</a>, Paris</p>
+            <p class="tagline">Research Scientist<br><a href="https://ai.meta.com/research/">FAIR, Meta</a> / Paris</p>
             <div class="links">
                 <a href="mailto:weidavid.zhang@gmail.com">Email</a>
                 <a href="https://scholar.google.com/citations?user=MG3oLzUAAAAJ">Scholar</a>
@@ -315,7 +262,7 @@
                 </div>
                 <div class="pub">
                     <div class="pub-title"><a href="https://openreview.net/forum?id=oLRt1guzT5">Graph Neural Networks for Learning Equivariant Representations of Neural Networks</a></div>
-                    <div class="pub-authors">Miltiadis Kofinas, Boris Knyazev, Yan Zhang, ..., <span class="me">David W. Zhang</span></div>
+                    <div class="pub-authors">Miltiadis Kofinas, Boris Knyazev, Yan Zhang, Yunlu Chen, Gertjan J. Burghouts, Efstratios Gavves, Cees G. M. Snoek, <span class="me">David W. Zhang</span></div>
                     <div class="pub-venue">ICLR 2024</div>
                     <div class="pub-links"><a href="https://openreview.net/forum?id=oLRt1guzT5">PDF</a></div>
                 </div>
@@ -344,6 +291,7 @@
                     <div class="pub-links"><a href="https://arxiv.org/abs/2010.04109">PDF</a> <a href="https://github.com/davzha/DESP">Code</a></div>
                 </div>
             </section>
+
 
             <section class="map-section">
                 <h2 class="section-title">Visitors</h2>
