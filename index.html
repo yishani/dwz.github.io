@@ -56,12 +56,11 @@
             height: 80px;
             object-fit: cover;
             margin-bottom: 24px;
-            filter: grayscale(100%) contrast(1.1);
-            transition: filter 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
         .avatar:hover {
-            filter: grayscale(0%) contrast(1);
+            transform: scale(1.05);
         }
 
         .sidebar h1 {
@@ -401,7 +400,7 @@
                 </div>
             </section>
 
-           
+            
 
             <section class="map-section">
                 <h2 class="section-title">Visitors</h2>
