@@ -314,10 +314,18 @@
         .map-container { 
             display: flex; 
             justify-content: center;
-            padding: 20px;
+            padding: 12px;
             background: rgba(42, 42, 42, 0.3);
             border-radius: 8px;
             border: 1px solid var(--border);
+            max-width: 240px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .map-container script {
+            transform: scale(0.8);
+            transform-origin: center;
         }
 
         /* Back to top button */
@@ -445,7 +453,7 @@
             <h1>David W. Zhang</h1>
             <p class="tagline">Research Scientist @ <a href="https://ai.meta.com/research/" target="_blank" rel="noopener noreferrer">FAIR, Meta</a>, Paris</p>
             <nav class="links" aria-label="Contact and social links">
-                <a href="mailto:weidavid.zhang@gmail.com" aria-label="Email David W. Zhang">→ Email</a>
+                <a href="mailto:david0w0zhang@gmail.com" aria-label="Email David W. Zhang">→ Email</a>
                 <a href="https://scholar.google.com/citations?user=MG3oLzUAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar profile">→ Scholar</a>
                 <a href="https://github.com/davzha" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">→ GitHub</a>
                 <a href="https://www.linkedin.com/in/david-w-zhang/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">→ LinkedIn</a>
@@ -479,6 +487,33 @@
                 <h2 class="section-title">Publications</h2>
                 
                 <article class="pub">
+                    <div class="pub-title"><a href="https://arxiv.org/abs/2512.18552" target="_blank" rel="noopener noreferrer">Toward Training Superintelligent Software Agents through Self-Play SWE-RL</a></div>
+                    <div class="pub-authors">Yuxiang Wei, Zhiqing Sun, Emily McMilin, Jonas Gehring, <span class="me">David Zhang</span>, Gabriel Synnaeve, Daniel Fried, Lingming Zhang, Sida Wang</div>
+                    <div class="pub-venue">arXiv 2025</div>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2512.18552" target="_blank" rel="noopener noreferrer">PDF</a>
+                    </div>
+                </article>
+
+                <article class="pub">
+                    <div class="pub-title"><a href="https://arxiv.org/abs/2510.02387" target="_blank" rel="noopener noreferrer">CWM: An Open-Weights LLM for Research on Code Generation with World Models</a></div>
+                    <div class="pub-authors">Jade Copet, Quentin Carbonneaux, Gal Cohen, Jonas Gehring, Jacob Kahn, Jannik Kossen, Felix Kreuk, Emily McMilin, Michel Meyer, Yuxiang Wei, <span class="me">David Zhang</span>, Kunhao Zheng, Jordi Armengol-Estapé, Pedram Bashiri, Maximilian Beck, Pierre Chambon, Abhishek Charnalia, Chris Cummins, Juliette Decugis, Zacharias V Fisches, François Fleuret, Fabian Gloeckle, Alex Gu, Michael Hassid, Daniel Haziza, Badr Youbi Idrissi, Christian Keller, Rahul Kindi, Hugh Leather, Gallil Maimon, Aram Markosyan, Francisco Massa, Pierre-Emmanuel Mazaré, Vegard Mella, Naila Murray, Keyur Muzumdar, Peter O'Hearn, Matteo Pagliardini, Dmitrii Pedchenko, Tal Remez, Volker Seeker, Marco Selvi, Oren Sultan, Sida Wang, Luca Wehrstedt, Ori Yoran, Lingming Zhang, Taco Cohen, Yossi Adi, Gabriel Synnaeve</div>
+                    <div class="pub-venue">arXiv 2025</div>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2510.02387" target="_blank" rel="noopener noreferrer">PDF</a>
+                    </div>
+                </article>
+
+                <article class="pub">
+                    <div class="pub-title"><a href="https://arxiv.org/abs/2503.19612" target="_blank" rel="noopener noreferrer">RL-finetuning LLMs from on- and off-policy data with a single algorithm</a></div>
+                    <div class="pub-authors">Yunhao Tang, Taco Cohen, <span class="me">David W. Zhang</span>, Michal Valko, Rémi Munos</div>
+                    <div class="pub-venue">arXiv 2025</div>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2503.19612" target="_blank" rel="noopener noreferrer">PDF</a>
+                    </div>
+                </article>
+
+                <article class="pub">
                     <div class="pub-title"><a href="https://arxiv.org/abs/2503.05453" target="_blank" rel="noopener noreferrer">Soft Policy Optimization: Online Off-Policy RL for Sequence Models</a></div>
                     <div class="pub-authors">Taco Cohen*, <span class="me">David W. Zhang*</span>, Kunhao Zheng, Yunhao Tang, Rémi Munos, Gabriel Synnaeve</div>
                     <div class="pub-venue">arXiv 2025</div>
@@ -488,8 +523,26 @@
                 </article>
 
                 <article class="pub">
+                    <div class="pub-title"><a href="https://openreview.net/forum?id=MUr7Fl93QS" target="_blank" rel="noopener noreferrer">Grounding code understanding in step-by-step execution</a></div>
+                    <div class="pub-authors"><span class="me">David W. Zhang</span>, Michaël Defferrard, Corrado Rainone, Roland Memisevic</div>
+                    <div class="pub-venue">ICLR 2025 Submission</div>
+                    <div class="pub-links">
+                        <a href="https://openreview.net/forum?id=MUr7Fl93QS" target="_blank" rel="noopener noreferrer">PDF</a>
+                    </div>
+                </article>
+
+                <article class="pub">
+                    <div class="pub-title"><a href="https://arxiv.org/abs/2405.13372" target="_blank" rel="noopener noreferrer">Ada-HGNN: Adaptive Sampling for Scalable Hypergraph Neural Networks</a></div>
+                    <div class="pub-authors">Shuai Wang, <span class="me">David W. Zhang</span>, Jia-Hong Huang, Stevan Rudinac, Monika Kackovic, Nachoem Wijnberg, Marcel Worring</div>
+                    <div class="pub-venue">arXiv 2024</div>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2405.13372" target="_blank" rel="noopener noreferrer">PDF</a>
+                    </div>
+                </article>
+
+                <article class="pub">
                     <div class="pub-title"><a href="https://arxiv.org/abs/2402.04858" target="_blank" rel="noopener noreferrer">CodeIt: Self-Improving Language Models with Prioritized Hindsight Replay</a></div>
-                    <div class="pub-authors">Natasha Butt, Blazej Manczak, Auke J. Wiggers, Corrado Rainone, <span class="me">David W. Zhang</span>, Michaël Defferrard, Taco Cohen</div>
+                    <div class="pub-authors">Natasha Butt, Błażej Mańczak, Auke J. Wiggers, Corrado Rainone, <span class="me">David Zhang</span>, Michaël Defferrard, Taco Cohen</div>
                     <div class="pub-venue">ICML 2024</div>
                     <div class="pub-links">
                         <a href="https://arxiv.org/abs/2402.04858" target="_blank" rel="noopener noreferrer">PDF</a>
@@ -497,8 +550,26 @@
                 </article>
 
                 <article class="pub">
+                    <div class="pub-title"><a href="https://arxiv.org/abs/2402.04081" target="_blank" rel="noopener noreferrer">Improved Generalization of Weight Space Networks via Augmentations</a></div>
+                    <div class="pub-authors">Aviv Shamsian, Aviv Navon, <span class="me">David W. Zhang</span>, Yan Zhang, Ethan Fetaya, Gal Chechik, Haggai Maron</div>
+                    <div class="pub-venue">ICML 2024</div>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2402.04081" target="_blank" rel="noopener noreferrer">PDF</a>
+                    </div>
+                </article>
+
+                <article class="pub">
+                    <div class="pub-title"><a href="https://openreview.net/forum?id=SA2zPf03zQ" target="_blank" rel="noopener noreferrer">Towards Self-Improving Language Models for Code Generation</a></div>
+                    <div class="pub-authors">Michaël Defferrard, Corrado Rainone, <span class="me">David W. Zhang</span>, Błażej Mańczak, Natasha Butt, Taco Cohen</div>
+                    <div class="pub-venue">Workshop on Large Language Model (LLM) Agents at ICLR 2024</div>
+                    <div class="pub-links">
+                        <a href="https://openreview.net/forum?id=SA2zPf03zQ" target="_blank" rel="noopener noreferrer">PDF</a>
+                    </div>
+                </article>
+
+                <article class="pub">
                     <div class="pub-title"><a href="https://openreview.net/forum?id=oLRt1guzT5" target="_blank" rel="noopener noreferrer">Graph Neural Networks for Learning Equivariant Representations of Neural Networks</a></div>
-                    <div class="pub-authors">Miltiadis Kofinas, Boris Knyazev, Yan Zhang, Yunlu Chen, Gertjan J. Burghouts, Efstratios Gavves, Cees G. M. Snoek, <span class="me">David W. Zhang</span></div>
+                    <div class="pub-authors">Miltiadis Kofinas*, Boris Knyazev*, Yan Zhang, Yunlu Chen, Gertjan J. Burghouts, Efstratios Gavves, Cees G. M. Snoek, <span class="me">David W. Zhang</span></div>
                     <div class="pub-venue">ICLR 2024</div>
                     <div class="pub-links">
                         <a href="https://openreview.net/forum?id=oLRt1guzT5" target="_blank" rel="noopener noreferrer">PDF</a>
@@ -547,7 +618,7 @@
             <section class="map-section">
                 <h2 class="section-title">Visitors</h2>
                 <div class="map-container">
-                    <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=a&t=m&d=af7nxyh0khvvUOlqbOPvSLUExs0k0s1_xwlUqqZHU4g&co=2d78ad&ct=ffffff&cmo=3acc3a&cmn=ff5353"></script>
+                    <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=af7nxyh0khvvUOlqbOPvSLUExs0k0s1_xwlUqqZHU4g"></script>
                     <noscript>
                         <p style="color: var(--text-muted); font-size: 14px;">JavaScript is required to display the visitor map.</p>
                     </noscript>
