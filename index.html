@@ -317,86 +317,18 @@
         }
 
         /* ===== Facts ===== */
-        .fact-line {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .facts-prose p {
+            font-size: 15px;
+            margin-bottom: 10px;
         }
 
-        .fact-line + .fact-line {
-            margin-top: 14px;
+        .facts-prose p:last-child {
+            margin-bottom: 0;
         }
 
-        .fact-icon {
-            font-size: 12px;
-            flex-shrink: 0;
-            line-height: 1;
-            opacity: 0.8;
-        }
-
-        /* Places — segmented bar, width = time spent, labels inside */
-        .places-wrap {
-            flex: 1;
-        }
-
-        .places-line {
-            display: flex;
-            height: 16px;
-            border: 1px solid var(--accent);
-            overflow: hidden;
-        }
-
-        .place-seg {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Space Mono', monospace;
-            font-size: 9px;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-            color: var(--bg);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            border-right: 1px solid var(--bg);
-            transition: filter 0.12s steps(2);
-        }
-
-        .place-seg:last-child {
-            border-right: none;
-        }
-
-        /* color encodes time: brighter = longer */
-        .place-seg.s-paris  { background: #8fd4f3; }
-        .place-seg.s-ams    { background: #5cc4f0; }
-        .place-seg.s-munich { background: var(--accent); }
-        .place-seg.s-gz {
-            background: #b8e3f8;
-            font-size: 10px;
-        }
-
-        .place-seg:hover {
-            filter: brightness(1.15);
-        }
-
-        /* Likes — small, modest words to match the slim bar */
-        .likes-line {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px 14px;
-            flex: 1;
-        }
-
-        .like {
-            font-family: 'Space Mono', monospace;
-            font-size: 10px;
-            color: var(--text-muted);
-            transition: color 0.1s steps(2), text-shadow 0.1s steps(2);
-        }
-
-        .like:hover {
-            color: var(--accent-secondary);
-            text-shadow: 0 0 6px rgba(244, 114, 182, 0.5);
+        .facts-prose .city {
+            color: var(--accent);
+            font-weight: 400;
         }
 
         /* ===== Visitor map ===== */
@@ -620,34 +552,18 @@
             </p>
         </section>
 
-        <!-- Some Facts -->
+        <!-- Facts -->
         <section class="fun-facts">
             <h2 class="section-title">Facts</h2>
-            <div class="fact-line">
-                <span class="fact-icon">📍</span>
-                <div class="places-wrap">
-                    <div class="places-line">
-                        <span class="place-seg s-paris" style="flex: 1.8;">Paris</span>
-                        <span class="place-seg s-ams" style="flex: 2.8;">Amsterdam</span>
-                        <span class="place-seg s-munich" style="flex: 6;">München</span>
-                        <span class="place-seg s-gz" style="flex: 0.5;">广州</span>
-                    </div>
-                </div>
-            </div>
-            <div class="fact-line">
-                <span class="fact-icon">😄</span>
-                <div class="likes-line">
-                    <span class="like">🚲 Biking</span>
-                    <span class="like">🎮 Games</span>
-                    <span class="like">🍣 Sushi</span>
-                    <span class="like">💻 Computers</span>
-                </div>
+            <div class="facts-prose">
+                <p>I grew up mostly in <span class="city">München</span>, spent a little time in <span class="city">广州</span> as a kid, spent most of my twenties in <span class="city">Amsterdam</span>, and now I live in <span class="city">Paris</span>.</p>
+                <p>Things I enjoy: games, biking, sushi.</p>
             </div>
         </section>
 
         <!-- Visitor Map -->
         <section class="map-section">
-            <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=af7nxyh0khvvUOlqbOPvSLUExs0k0s1_xwlUqqZHU4g"></script>
+            <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=300&t=tt&d=af7nxyh0khvvUOlqbOPvSLUExs0k0s1_xwlUqqZHU4g&co=2a2a2a&cmo=7dd3fc&cmn=f472b6&ct=ffffff"></script>
             <noscript>
                 <p style="color: var(--text-muted); font-size: 14px;">JavaScript is required to display the visitor map.</p>
             </noscript>
