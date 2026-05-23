@@ -17,33 +17,23 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --bg: #0a0a0a;
             --text: #e8e8e8;
-            --text-muted: #888;
+            --text-muted: #7d7d7d;
             --accent: #7dd3fc;
             --accent-secondary: #f472b6;
-            --border: #2a2a2a;
-            --hover-bg: rgba(125, 211, 252, 0.06);
+            --border: #242424;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        ::selection {
-            background: var(--accent);
-            color: var(--bg);
-        }
+        ::selection { background: var(--accent); color: var(--bg); }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Noto Sans JP', sans-serif;
@@ -55,7 +45,7 @@
             min-height: 100vh;
         }
 
-        /* CRT scanline overlay */
+        /* faint CRT scanlines — barely there */
         body::after {
             content: '';
             position: fixed;
@@ -64,120 +54,143 @@
             z-index: 9999;
             background: repeating-linear-gradient(
                 0deg,
-                rgba(0, 0, 0, 0) 0px,
-                rgba(0, 0, 0, 0) 2px,
-                rgba(0, 0, 0, 0.18) 3px,
-                rgba(0, 0, 0, 0.18) 4px
+                rgba(0,0,0,0) 0px,
+                rgba(0,0,0,0) 3px,
+                rgba(0,0,0,0.06) 4px
             );
         }
 
         .container {
-            max-width: 720px;
+            max-width: 680px;
             margin: 0 auto;
-            padding: 90px 32px 120px;
+            padding: 70px 32px 110px;
         }
+
+        /* ===== Boot line ===== */
+        .boot {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 44px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .boot .typed {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            vertical-align: bottom;
+            border-right: 2px solid var(--accent);
+            width: 0;
+            animation: type 1.1s steps(24) 0.2s forwards,
+                       caret 0.8s steps(1) 6 1.3s,
+                       hideCaret 0s linear 6.1s forwards;
+        }
+
+        @keyframes type {
+            to { width: 22ch; }
+        }
+        @keyframes caret {
+            50% { border-color: transparent; }
+        }
+        @keyframes hideCaret {
+            to { border-color: transparent; }
+        }
+
+        .boot .ok {
+            color: var(--accent);
+            opacity: 0;
+            animation: appear 0.01s linear 1.5s forwards;
+        }
+
+        @keyframes appear { to { opacity: 1; } }
 
         /* ===== Header ===== */
         header {
             display: flex;
             align-items: center;
-            gap: 28px;
-            margin-bottom: 8px;
+            gap: 26px;
+            margin-bottom: 14px;
         }
 
         .avatar {
-            width: 104px;
-            height: 104px;
+            width: 96px;
+            height: 96px;
             border-radius: 0;
             object-fit: cover;
-            border: 3px solid var(--accent);
+            border: 1px solid var(--border);
             flex-shrink: 0;
-            image-rendering: pixelated;
-            box-shadow: 6px 6px 0 var(--accent-secondary);
-            transition: box-shadow 0.15s steps(2), transform 0.15s steps(2);
+            filter: grayscale(100%) contrast(1.05);
+            transition: filter 0.35s ease;
         }
 
-        .avatar:hover {
-            box-shadow: 9px 9px 0 var(--accent-secondary);
-            transform: translate(-3px, -3px);
-        }
+        .avatar:hover { filter: grayscale(0%); }
 
         header h1 {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 19px;
-            font-weight: 400;
-            line-height: 1.4;
-            letter-spacing: 0;
-            margin-bottom: 12px;
-            color: var(--accent);
-            text-shadow: 3px 3px 0 var(--accent-secondary), 0 0 16px rgba(125, 211, 252, 0.35);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 27px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 7px;
+            color: var(--text);
+        }
+
+        header h1 .cursor {
+            display: inline-block;
+            width: 11px;
+            height: 21px;
+            background: var(--accent);
+            margin-left: 3px;
+            vertical-align: -3px;
+            animation: caret 1.05s steps(1) infinite;
         }
 
         .tagline {
-            font-family: 'Space Mono', monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 13px;
             color: var(--text-muted);
         }
 
-        .tagline::after {
-            content: '_';
-            color: var(--accent);
-            animation: blink 1.1s steps(1) infinite;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            50.01%, 100% { opacity: 0; }
-        }
-
-        /* ===== Meta links ===== */
+        /* ===== Prompt links ===== */
         .links {
-            font-family: 'Space Mono', monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 13px;
             color: var(--text-muted);
-            margin: 28px 0 4px;
+            margin: 26px 0 0;
+        }
+
+        .links::before {
+            content: '$ ';
+            color: var(--accent-secondary);
         }
 
         .links a {
             color: var(--text-muted);
             text-decoration: none;
-            transition: color 0.1s steps(2), text-shadow 0.1s steps(2);
+            transition: color 0.15s ease;
         }
 
-        .links a:hover {
-            color: var(--accent);
-            text-shadow: 0 0 8px rgba(125, 211, 252, 0.6);
-        }
+        .links a:hover { color: var(--accent); }
 
-        .links .sep {
-            color: var(--border);
-            margin: 0 10px;
-        }
+        .links .sep { color: var(--border); margin: 0 9px; }
 
         /* ===== Sections ===== */
-        section {
-            margin-top: 52px;
-        }
+        section { margin-top: 56px; }
 
         .section-title {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 11px;
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 500;
             color: var(--accent);
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-shadow: 0 0 8px rgba(125, 211, 252, 0.4);
+            margin-bottom: 22px;
+            padding-bottom: 9px;
+            border-bottom: 1px solid var(--border);
         }
 
         .section-title::before {
-            content: '\25B6';
-            font-size: 8px;
-            color: var(--accent-secondary);
-            text-shadow: 0 0 8px rgba(244, 114, 182, 0.5);
+            content: 'david@meta:~$ cd ';
+            color: var(--text-muted);
         }
 
         /* ===== Bio ===== */
@@ -185,59 +198,43 @@
             font-size: 15px;
             margin-bottom: 12px;
         }
+        .bio p:last-child { margin-bottom: 0; }
 
-        .bio p:last-child {
-            margin-bottom: 0;
-        }
-
-        .bio a {
+        .bio a, .facts-prose a {
             color: var(--accent);
             text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s ease;
+            border-bottom: 1px solid var(--border);
+            transition: border-color 0.15s ease;
         }
+        .bio a:hover { border-bottom-color: var(--accent); }
 
-        .bio a:hover {
-            border-bottom-color: var(--accent);
-        }
-
-        /* ===== News (compact rows) ===== */
-        .news-list {
-            display: flex;
-            flex-direction: column;
-        }
-
+        /* ===== News ===== */
         .news-row {
             display: flex;
-            gap: 20px;
+            gap: 18px;
             padding: 5px 0;
             font-size: 14.5px;
             line-height: 1.6;
         }
 
         .news-date {
-            font-family: 'Space Mono', monospace;
-            font-size: 13px;
-            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            color: var(--accent-secondary);
             flex-shrink: 0;
-            width: 92px;
-            padding-top: 1px;
+            width: 88px;
         }
 
-        .news-body {
-            flex: 1;
-        }
+        .news-date::before { content: '> '; color: var(--border); }
+
+        .news-body { flex: 1; }
 
         /* ===== Publications ===== */
         .pub {
-            padding: 18px 0;
+            padding: 16px 0;
             border-top: 1px solid var(--border);
         }
-
-        .pub:first-of-type {
-            border-top: none;
-            padding-top: 0;
-        }
+        .pub:first-of-type { border-top: none; padding-top: 0; }
 
         .pub-title {
             font-size: 15px;
@@ -245,124 +242,95 @@
             line-height: 1.5;
             margin-bottom: 5px;
         }
-
         .pub-title a {
             color: var(--text);
             text-decoration: none;
-            transition: color 0.2s ease;
+            transition: color 0.15s ease;
         }
-
-        .pub-title a:hover {
-            color: var(--accent);
-        }
+        .pub-title a:hover { color: var(--accent); }
 
         .pub-authors {
             font-size: 13px;
             color: var(--text-muted);
             line-height: 1.6;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
-
-        .pub-authors .me {
-            color: var(--accent);
-        }
+        .pub-authors .me { color: var(--accent); }
 
         .pub-venue {
-            font-family: 'Space Mono', monospace;
-            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11.5px;
             color: var(--accent-secondary);
-            margin-bottom: 9px;
+            margin-bottom: 8px;
         }
 
-        .pub-links {
-            display: flex;
-            gap: 10px;
-        }
+        .pub-links { display: flex; gap: 14px; }
 
         .pub-links a {
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11.5px;
             color: var(--text-muted);
             text-decoration: none;
-            padding: 3px 9px;
-            border: 2px solid var(--border);
-            transition: all 0.1s steps(2);
+            transition: color 0.15s ease;
         }
-
-        .pub-links a:hover {
-            color: var(--bg);
-            background: var(--accent);
-            border-color: var(--accent);
-            box-shadow: 3px 3px 0 var(--accent-secondary);
-            transform: translate(-1px, -1px);
-        }
+        .pub-links a::before { content: '['; color: var(--border); }
+        .pub-links a::after { content: ']'; color: var(--border); }
+        .pub-links a:hover { color: var(--accent); }
 
         .scholar-note {
-            font-family: 'Space Mono', monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 12px;
             color: var(--text-muted);
-            margin-top: 20px;
+            margin-top: 18px;
         }
-
-        .scholar-note a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        .scholar-note a:hover {
-            border-bottom: 1px solid var(--accent);
-        }
+        .scholar-note a { color: var(--accent); text-decoration: none; }
+        .scholar-note a:hover { border-bottom: 1px solid var(--accent); }
 
         /* ===== Facts ===== */
         .facts-prose p {
             font-size: 15px;
             margin-bottom: 10px;
         }
-
-        .facts-prose p:last-child {
-            margin-bottom: 0;
-        }
-
+        .facts-prose p:last-child { margin-bottom: 0; }
         .facts-prose .city {
             color: var(--accent);
-            font-weight: 400;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13.5px;
         }
 
         /* ===== Visitor map ===== */
         .map-section {
             margin-top: 60px;
-            padding-top: 36px;
+            padding-top: 34px;
             border-top: 1px solid var(--border);
         }
 
         /* ===== Footer ===== */
         footer {
-            font-family: 'Space Mono', monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 12px;
             color: var(--text-muted);
-            margin-top: 48px;
-            padding-top: 20px;
+            margin-top: 46px;
+            padding-top: 18px;
             border-top: 1px solid var(--border);
-            text-align: center;
         }
+        footer::before { content: 'david@meta:~$ '; color: var(--accent-secondary); }
 
-        /* ===== Page load animation ===== */
-        .container > * {
-            animation: powerOn 0.4s steps(4) backwards;
+        /* ===== Boot-in reveal ===== */
+        .boots-in {
+            opacity: 0;
+            animation: bootIn 0.45s steps(3) forwards;
         }
-        .container > *:nth-child(1) { animation-delay: 0.05s; }
-        .container > *:nth-child(2) { animation-delay: 0.15s; }
-        .container > *:nth-child(3) { animation-delay: 0.25s; }
-        .container > *:nth-child(4) { animation-delay: 0.35s; }
-        .container > *:nth-child(5) { animation-delay: 0.45s; }
-        .container > *:nth-child(6) { animation-delay: 0.55s; }
-        .container > *:nth-child(7) { animation-delay: 0.65s; }
+        .boots-in:nth-of-type(1) { animation-delay: 1.7s; }
+        .boots-in:nth-of-type(2) { animation-delay: 1.9s; }
+        .boots-in:nth-of-type(3) { animation-delay: 2.1s; }
+        .boots-in:nth-of-type(4) { animation-delay: 2.3s; }
+        .boots-in:nth-of-type(5) { animation-delay: 2.5s; }
+        .boots-in:nth-of-type(6) { animation-delay: 2.7s; }
+        .boots-in:nth-of-type(7) { animation-delay: 2.9s; }
 
-        @keyframes powerOn {
-            from { opacity: 0; transform: translateY(10px); }
+        @keyframes bootIn {
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -371,69 +339,59 @@
             outline-offset: 2px;
         }
 
+        @media (prefers-reduced-motion: reduce) {
+            .boot .typed { animation: none; width: 22ch; border-color: transparent; }
+            .boot .ok { animation: none; opacity: 1; }
+            .boots-in { animation: none; opacity: 1; }
+            header h1 .cursor { animation: none; }
+        }
+
         /* ===== Mobile ===== */
         @media (max-width: 600px) {
-            .container {
-                padding: 56px 22px 80px;
-            }
-
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 18px;
-            }
-
-            header h1 {
-                font-size: 15px;
-            }
-
-            .links {
-                line-height: 2.2;
-            }
-
-            .news-row {
-                flex-direction: column;
-                gap: 1px;
-                padding: 7px 0;
-            }
-
-            .news-date {
-                width: auto;
-            }
+            .container { padding: 48px 22px 80px; }
+            header { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .links { line-height: 2.1; }
+            .news-row { flex-direction: column; gap: 1px; padding: 7px 0; }
+            .news-date { width: auto; }
+            .boot { font-size: 11.5px; }
+            .section-title::before { content: '~$ cd '; }
         }
 
         @media print {
             body { background: white; color: black; }
-            .map-section { display: none; }
+            body::after, .boot, .map-section { display: none; }
             .pub { page-break-inside: avoid; }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Boot line -->
+        <div class="boot"><span class="typed">&gt; loading david_zhang</span><span class="ok"> &nbsp;[ ok ]</span></div>
+
         <!-- Header -->
-        <header>
+        <header class="boots-in">
             <img src="avatar.png" alt="David W. Zhang profile picture" class="avatar">
             <div>
-                <h1>David W. Zhang</h1>
-                <p class="tagline">Research Scientist @ FAIR, Meta — Paris</p>
+                <h1>David W. Zhang<span class="cursor"></span></h1>
+                <p class="tagline">Research Scientist @ FAIR, Meta &mdash; Paris</p>
             </div>
         </header>
 
         <!-- Links -->
-        <p class="links">
-            <a href="mailto:david0w0zhang@gmail.com">Email</a>
-            <span class="sep">/</span>
-            <a href="https://scholar.google.com/citations?user=MG3oLzUAAAAJ" target="_blank" rel="noopener noreferrer">Scholar</a>
-            <span class="sep">/</span>
-            <a href="https://github.com/davzha" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <span class="sep">/</span>
-            <a href="https://www.linkedin.com/in/david-w-zhang/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <p class="links boots-in">
+            <a href="mailto:david0w0zhang@gmail.com">email</a>
+            <span class="sep">&middot;</span>
+            <a href="https://scholar.google.com/citations?user=MG3oLzUAAAAJ" target="_blank" rel="noopener noreferrer">scholar</a>
+            <span class="sep">&middot;</span>
+            <a href="https://github.com/davzha" target="_blank" rel="noopener noreferrer">github</a>
+            <span class="sep">&middot;</span>
+            <a href="https://www.linkedin.com/in/david-w-zhang/" target="_blank" rel="noopener noreferrer">linkedin</a>
         </p>
 
         <!-- About -->
-        <section class="bio">
-            <h2 class="section-title">About</h2>
+        <section class="bio boots-in">
+            <h2 class="section-title">about</h2>
             <p>
                 I'm a research scientist at <a href="https://ai.meta.com/research/" target="_blank" rel="noopener noreferrer">FAIR, Meta</a>
                 in Paris, working on code generation and RL. I'm a core contributor to
@@ -448,8 +406,8 @@
         </section>
 
         <!-- News -->
-        <section class="news">
-            <h2 class="section-title">News</h2>
+        <section class="news boots-in">
+            <h2 class="section-title">news</h2>
             <div class="news-list">
                 <div class="news-row">
                     <div class="news-date">Jul 2026</div>
@@ -471,15 +429,15 @@
         </section>
 
         <!-- Selected Publications -->
-        <section class="publications">
-            <h2 class="section-title">Selected Publications</h2>
+        <section class="publications boots-in">
+            <h2 class="section-title">publications</h2>
 
             <article class="pub">
                 <div class="pub-title"><a href="https://arxiv.org/abs/2510.02387" target="_blank" rel="noopener noreferrer">CWM: An Open-Weights LLM for Research on Code Generation with World Models</a></div>
                 <div class="pub-authors">Jade Copet, Quentin Carbonneaux, Gal Cohen, Jonas Gehring, Jacob Kahn, Jannik Kossen, Felix Kreuk, Emily McMilin, Michel Meyer, Yuxiang Wei, <span class="me">David Zhang</span>, et al.</div>
                 <div class="pub-venue">arXiv 2025</div>
                 <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2510.02387" target="_blank" rel="noopener noreferrer">PDF</a>
+                    <a href="https://arxiv.org/abs/2510.02387" target="_blank" rel="noopener noreferrer">pdf</a>
                 </div>
             </article>
 
@@ -488,7 +446,7 @@
                 <div class="pub-authors">Miltiadis Kofinas*, Boris Knyazev*, Yan Zhang, Yunlu Chen, Gertjan J. Burghouts, Efstratios Gavves, Cees G. M. Snoek, <span class="me">David W. Zhang</span></div>
                 <div class="pub-venue">ICLR 2024</div>
                 <div class="pub-links">
-                    <a href="https://openreview.net/forum?id=oLRt1guzT5" target="_blank" rel="noopener noreferrer">PDF</a>
+                    <a href="https://openreview.net/forum?id=oLRt1guzT5" target="_blank" rel="noopener noreferrer">pdf</a>
                 </div>
             </article>
 
@@ -497,7 +455,7 @@
                 <div class="pub-authors">Vincent Tao Hu, <span class="me">David W. Zhang</span>, Pascal Mettes, Meng Tang, Deli Zhao, Cees G. M. Snoek</div>
                 <div class="pub-venue">AAAI 2024</div>
                 <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2312.10825" target="_blank" rel="noopener noreferrer">PDF</a>
+                    <a href="https://arxiv.org/abs/2312.10825" target="_blank" rel="noopener noreferrer">pdf</a>
                 </div>
             </article>
 
@@ -506,7 +464,7 @@
                 <div class="pub-authors">Natasha Butt, Błażej Mańczak, Auke J. Wiggers, Corrado Rainone, <span class="me">David Zhang</span>, Michaël Defferrard, Taco Cohen</div>
                 <div class="pub-venue">ICML 2024</div>
                 <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2402.04858" target="_blank" rel="noopener noreferrer">PDF</a>
+                    <a href="https://arxiv.org/abs/2402.04858" target="_blank" rel="noopener noreferrer">pdf</a>
                 </div>
             </article>
 
@@ -515,7 +473,7 @@
                 <div class="pub-authors">Aviv Shamsian, Aviv Navon, <span class="me">David W. Zhang</span>, Yan Zhang, Ethan Fetaya, Gal Chechik, Haggai Maron</div>
                 <div class="pub-venue">ICML 2024</div>
                 <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2402.04081" target="_blank" rel="noopener noreferrer">PDF</a>
+                    <a href="https://arxiv.org/abs/2402.04081" target="_blank" rel="noopener noreferrer">pdf</a>
                 </div>
             </article>
 
@@ -524,7 +482,7 @@
                 <div class="pub-authors"><span class="me">David W. Zhang</span>, Corrado Rainone, Markus Peschl, Roberto Bondesan</div>
                 <div class="pub-venue">ICLR 2023</div>
                 <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2302.05446" target="_blank" rel="noopener noreferrer">PDF</a>
+                    <a href="https://arxiv.org/abs/2302.05446" target="_blank" rel="noopener noreferrer">pdf</a>
                 </div>
             </article>
 
@@ -533,7 +491,7 @@
                 <div class="pub-authors">Vincent Tao Hu*, <span class="me">David W. Zhang*</span>, Yuki M. Asano, Gertjan J. Burghouts, Cees G. M. Snoek</div>
                 <div class="pub-venue">CVPR 2023</div>
                 <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2210.06462" target="_blank" rel="noopener noreferrer">PDF</a>
+                    <a href="https://arxiv.org/abs/2210.06462" target="_blank" rel="noopener noreferrer">pdf</a>
                 </div>
             </article>
 
@@ -542,8 +500,8 @@
                 <div class="pub-authors">Yan Zhang*, <span class="me">David W. Zhang*</span>, Simon Lacoste-Julien, Gertjan J. Burghouts, Cees G. M. Snoek</div>
                 <div class="pub-venue">ICML 2023</div>
                 <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2301.13197" target="_blank" rel="noopener noreferrer">PDF</a>
-                    <a href="https://github.com/davzha/MESH" target="_blank" rel="noopener noreferrer">Code</a>
+                    <a href="https://arxiv.org/abs/2301.13197" target="_blank" rel="noopener noreferrer">pdf</a>
+                    <a href="https://github.com/davzha/MESH" target="_blank" rel="noopener noreferrer">code</a>
                 </div>
             </article>
 
@@ -553,8 +511,8 @@
         </section>
 
         <!-- Facts -->
-        <section class="fun-facts">
-            <h2 class="section-title">Facts</h2>
+        <section class="fun-facts boots-in">
+            <h2 class="section-title">facts</h2>
             <div class="facts-prose">
                 <p>I grew up mostly in <span class="city">München</span>, spent a little time in <span class="city">广州</span> as a kid, spent most of my twenties in <span class="city">Amsterdam</span>, and now I live in <span class="city">Paris</span>.</p>
                 <p>Things I enjoy: games, biking, sushi.</p>
@@ -562,7 +520,7 @@
         </section>
 
         <!-- Visitor Map -->
-        <section class="map-section">
+        <section class="map-section boots-in">
             <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=300&t=tt&d=af7nxyh0khvvUOlqbOPvSLUExs0k0s1_xwlUqqZHU4g&co=2a2a2a&cmo=7dd3fc&cmn=f472b6&ct=ffffff"></script>
             <noscript>
                 <p style="color: var(--text-muted); font-size: 14px;">JavaScript is required to display the visitor map.</p>
@@ -570,9 +528,7 @@
         </section>
 
         <!-- Footer -->
-        <footer>
-            <p>© 2026 David W. Zhang</p>
-        </footer>
+        <footer>echo "&copy; 2026 David W. Zhang"</footer>
     </div>
 </body>
 </html>
